@@ -20,7 +20,7 @@ public class Music {
     public String makeAPICallForAlbum(String album, String artist)
     {
         String endPoint = "&format=json";
-        String url = baseUrl + "?method=album.getinfo&api_key=" + apiKey + "&artist=" + artist + "&album=" + album  +endPoint;
+        String url = baseUrl + "?method=album.getinfo&api_key=" + apiKey + "&artist=" + artist + "&album=" + album + endPoint;
 
         try {
             URI myUri = URI.create(url); // creates a URI object from the url string
@@ -38,15 +38,6 @@ public class Music {
     {
         JSONObject jsonObj = new JSONObject(json);
         JSONObject albumObj = jsonObj.getJSONObject("album");
-        System.out.println("Name: " + albumObj.getString("name") + ", Artist = " + albumObj.getString("artist") + ", ID = " + albumObj.getInt("id") + ", URL = " + albumObj.getString("url") + ", Release Date = "  + albumObj.getString("release date") + ", Listeners = " + albumObj.getInt("playcount"));
-        System.out.println();
-        JSONObject trackObj = jsonObj.getJSONObject("tracks");
-        JSONArray trackArr = trackObj.getJSONArray("tracks");
-
-        for (int i = 0; i < trackArr.length(); i++)
-        {
-            JSONObject rank1 = trackArr.getJSONObject(1);
-            System.out.println("Name = " + rank1.getString("name") + ", Duration = " + rank1.getString("duration") + ", URL = " + rank1.getString("url"));
-        }
+        System.out.println("Name: " + albumObj.getString("name") + ", Artist = " + albumObj.getString("artist") + ", URL = " + albumObj.getString("url") + ", Listeners = " + albumObj.getInt("playcount"));
     }
 }
